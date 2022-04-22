@@ -15,18 +15,17 @@ RUN apk add -U --no-cache \
 RUN apk add --no-cache \
     gcc libc-dev libffi-dev
 
-# Create a non-root user and set file permissions
-RUN addgroup -S app \
-    && adduser -S -g app -u 1000 app \
-    && chown -R app:app $HOME \
-    && echo "export PATH=\"`python3 -m site --user-base`/bin:\$PATH\"" >> ~/.bashrc
-
-# Run as the non-root user
-USER 1000
-
 # Install checkov and update PATH
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
+
+# Create a non-root user and set file permissions
+RUN addgroup -S app \
+    && adduser -S -g app -u 1000 app \
+    && chown -R app:app $HOME
+
+# Run as the non-root user
+USER 1000
 
 # Copy entrypoint
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
