@@ -19,14 +19,6 @@ RUN apk add --no-cache \
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
-# Create a non-root user and set file permissions
-RUN addgroup -S app \
-    && adduser -S -g app -u 1000 app \
-    && chown -R app:app $HOME
-
-# Run as the non-root user
-USER 1000
-
 # Copy entrypoint
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
