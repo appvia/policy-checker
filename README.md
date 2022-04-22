@@ -3,12 +3,12 @@
 This is a tool that can be used both locally and in CI to determine if your repository is compliant with your Organisation's Policy as Code.
 
 Policy location and versions are determined by:
-- **Terraform:** Scans `x.tfvars.json` files in your repository looking for 3 keys:
+- **Terraform:** Scans `policy_checker.json` file in your repository looking for 3 keys:
     ```json
     {
-        "policy_checker_source": "https://github.com/appvia/policy",
-        "policy_checker_version": "1.0.1",
-        "policy_checker_config": "infra/generic/config.yaml"
+        "source": "https://github.com/appvia/policy",
+        "version": "1.0.1",
+        "config": "infra/generic/config.yaml"
     }
     ```
 - **Kubernetes:** *Not yet implemented*

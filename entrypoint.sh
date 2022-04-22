@@ -11,11 +11,11 @@ function jq_fetch () {
 }
 
 if $RUN_CHECKOV_POLICIES ; then
-    echo "Locating policy-checker variables within *.tfvars.json files.."
-    TFVARS_CONTENT=`cat *.tfvars.json`
-    POLICY_SOURCE=$(jq_fetch "${TFVARS_CONTENT}" "policy_checker_source")
-    POLICY_VERSION=$(jq_fetch "${TFVARS_CONTENT}" "policy_checker_version")
-    POLICY_CONFIG=$(jq_fetch "${TFVARS_CONTENT}" "policy_checker_config")
+    echo "Locating policy-checker variables within policy_checker.json file..."
+    POLICY_CHECKER_VARIABLES=`cat policy_checker.json`
+    POLICY_SOURCE=$(jq_fetch "${POLICY_CHECKER_VARIABLES}" "source")
+    POLICY_VERSION=$(jq_fetch "${POLICY_CHECKER_VARIABLES}" "version")
+    POLICY_CONFIG=$(jq_fetch "${POLICY_CHECKER_VARIABLES}" "config")
     echo "Policy Package: ${POLICY_SOURCE}:${POLICY_VERSION}"
 
     echo "Fetching Policies..."
