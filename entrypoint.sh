@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-# Ensure PATH is up to date
-source ~/.bashrc
-
 RUN_CHECKOV_POLICIES=${RUN_CHECKOV_POLICIES:-false}
 RUN_KYVERNO_POLICIES=${RUN_KYVERNO_POLICIES:-false}
 POLICY_REPO_DIR="${POLICY_REPO_DIR:-/tmp/policy}"
