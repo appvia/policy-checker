@@ -19,8 +19,7 @@ if $RUN_CHECKOV_POLICIES ; then
     echo "Policy Package: ${POLICY_SOURCE}:${POLICY_VERSION}"
 
     echo "Fetching Policies..."
-    git config --global advice.detachedHead false
-    git clone --quiet --depth 1 --branch ${POLICY_VERSION} ${POLICY_SOURCE} ${POLICY_REPO_DIR}
+    git -c advice.detachedHead=false clone --quiet --depth 1 --branch ${POLICY_VERSION} ${POLICY_SOURCE} ${POLICY_REPO_DIR}
     echo "Policies fetched."
 
     echo "Running checkov policies..."
